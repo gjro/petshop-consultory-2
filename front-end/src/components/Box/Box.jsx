@@ -34,7 +34,6 @@ export const Box = (props) => {
 	const rows = [];
 
 	if (props.entity == "client") {
-		let { id, cpf, nome, telefone } = props.data;
 		props.data.map((element) =>
 			rows.push(
 				createData(
@@ -46,14 +45,25 @@ export const Box = (props) => {
 			)
 		);
 	} else if (props.entity == "pet") {
-		let { id, nome, dono, raca } = props.data;
 		props.data.map((element) =>
 			rows.push(
 				createData(
 					element.id,
 					element.nome,
-					element.dono,
+					element.dono_id,
 					element.raca
+				)
+			)
+		);
+	} else if (props.entity == "employee") {
+		let { id, nome, cpf, cargo } = props.data;
+		props.data.map((element) =>
+			rows.push(
+				createData(
+					element.id,
+					element.nome,
+					element.cpf,
+					element.cargo
 				)
 			)
 		);
