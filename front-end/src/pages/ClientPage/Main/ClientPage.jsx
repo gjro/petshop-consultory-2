@@ -1,39 +1,42 @@
-import React from "react"
-import { SideBar } from "../../../components/SideBar/SideBar"
-import { useStyles } from './ClientPage.style'
-import { Box } from '../../../components/Box/Box'
-import api from '../../../services/api'
-
-
+import React from "react";
+import { SideBar } from "../../../components/SideBar/SideBar";
+import { useStyles } from "./ClientPage.style";
+import { Box } from "../../../components/Box/Box";
+import api from "../../../services/api";
 
 export const ClientPage = () => {
-  const [client, setClient] = React.useState([]);
+	const [client, setClient] = React.useState([]);
 
+	async function apiGet() {
+		await api
+			.get("/donos")
+			.then((response) => setClient(response.data))
+			.catch((err) => {
+				console.error("ops! ocorreu um erro" + err);
+			});
+	}
 
-  async function apiGet(){
-    await api
-    .get("/donos")
-    .then((response) => setClient(response.data))
-    .catch((err) => {
-      console.error("ops! ocorreu um erro" + err);
-    });
-  }
-  
-  React.useEffect(apiGet, []);
+	React.useEffect(apiGet, []);
 
+	///console.log(client)
 
-  ///console.log(client)
-
-
-  const style = useStyles();
-    return (
-    <div>
-      <SideBar />
-        <main className={style.content}>
-        <div className={style.box}> 
-          <Box title="Clientes" th1="Nome" th2="CPF" th3="Telefone" new="novo-cliente" data={client}/>
-      </div>
-      </main>
-    </div>
-  );
-}
+	const style = useStyles();
+	return (
+		<div>
+			<SideBar />
+			<main className={style.content}>
+				<div className={style.box}>
+					<Box
+						title="Clientes"
+						th1="Nome"
+						th2="CPF"
+						th3="Telefone"
+						new="novo-cliente"
+						data={client}
+						entity="client"
+					/>
+				</div>
+			</main>
+		</div>
+	);
+};
