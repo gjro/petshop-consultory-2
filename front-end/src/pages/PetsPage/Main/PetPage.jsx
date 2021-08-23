@@ -5,29 +5,29 @@ import { Box } from '../../../components/Box/Box'
 import api from '../../../services/api'
 
 export const PetPage = () => {
-    const style = useStyles();
+  const style = useStyles();
 
-    const [client, setClient] = React.useState([]);
+  const [pet, setPet] = React.useState([]);
 
-    async function apiGet(){
-      await api
-      .get("/pets")
-      .then((response) => setClient(response.data))
+  async function apiGet() {
+    await api
+      .get("/pets/")
+      .then((response) => setPet(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-    }
-  
+  }
+
   React.useEffect(apiGet, []);
 
 
-    return (
+  return (
     <div>
       <SideBar />
-        <main className={style.content}>
-        <div className={style.box}> 
-          <Box title="Pets" th1="Nome" th2="Dono" th3="Raça" new="novo-pet" data={client}/>
-      </div>
+      <main className={style.content}>
+        <div className={style.box}>
+          <Box title="Pets" th1="Nome" th2="Dono" th3="Raça" new="novo-pet" data={pet} entity="pet" />
+        </div>
       </main>
     </div>
   );

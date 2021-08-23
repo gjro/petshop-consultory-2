@@ -31,33 +31,34 @@ function createData(id, name, cpf, telefone) {
 
 export const Box = (props) => {
 	const classes = useStyles();
-	switch (props.entity) {
-		case "client":
-			const { id, cpf, nome, telefone } = props.data;
-			const rows = [];
-			props.data.map((element) =>
-				rows.push(
-					createData(
-						element.id,
-						element.nome,
-						element.cpf,
-						element.telefone
-					)
-				)
-			);
-
-			break;
-
-		default:
-			break;
-	}
-	const { id, cpf, nome, telefone } = props.data;
 	const rows = [];
-	props.data.map((element) =>
-		rows.push(
-			createData(element.id, element.nome, element.cpf, element.telefone)
-		)
-	);
+
+	if (props.entity == "client") {
+		let { id, cpf, nome, telefone } = props.data;
+		props.data.map((element) =>
+			rows.push(
+				createData(
+					element.id,
+					element.nome,
+					element.cpf,
+					element.telefone
+				)
+			)
+		);
+	} else if (props.entity == "pet") {
+		let { id, nome, dono, raca } = props.data;
+		props.data.map((element) =>
+			rows.push(
+				createData(
+					element.id,
+					element.nome,
+					element.dono,
+					element.raca
+				)
+			)
+		);
+	}
+
 
 	return (
 		<div className={classes.root}>
