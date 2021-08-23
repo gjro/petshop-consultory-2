@@ -25,18 +25,24 @@ const useStyles = makeStyles({
 });
 
 function createData(id, name, cpf, telefone) {
+  
   return { id, name, cpf, telefone};
 }
 
-const rows = [
-  createData('01', 'Chico', '000.111.222-33', '(00)9 1111-222' ),
-  createData('02', 'Luana', '000.111.222-33', '(00)9 1111-222' ),
-  createData('03', 'Moisés', '000.111.222-33', '(00)9 1111-222' ),
-  createData('04', 'Maria', '000.111.222-33', '(00)9 1111-222' ),
-];
+
+
+
 
 export const Box = (props) => {
   const classes = useStyles();
+  console.log(props.data);
+
+  console.log(props.data[0])
+
+  const {id, cpf, nome, telefone} = props.data;
+  
+  const rows = [];
+  props.data.map((element) => rows.push(createData(element.id, element.nome,element.cpf, element.telefone)))
 
   return (
     <div className={classes.root}>
