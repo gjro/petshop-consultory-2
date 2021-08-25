@@ -25,8 +25,9 @@ class donosControllers {
 
     //Criar Dono
     async create(req, res) {
+        console.log('REQUISITION : ', req.body);
         try {
-            const { nome, cpf, telefone } = req.body;
+            const { nome, cpf, telefone } = await req.body;
             const novoDono = await Dono.create({
                 nome,
                 cpf,
@@ -69,7 +70,7 @@ class donosControllers {
 
             dono.destroy();
             return res.status(status) + "destruido com sucesso";
-            
+
         } catch (e) {
             console.log("Error: " + e);
         }

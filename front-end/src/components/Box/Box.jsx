@@ -56,7 +56,6 @@ export const Box = (props) => {
 			)
 		);
 	} else if (props.entity == "employee") {
-		let { id, nome, cpf, cargo } = props.data;
 		props.data.map((element) =>
 			rows.push(
 				createData(
@@ -64,6 +63,17 @@ export const Box = (props) => {
 					element.nome,
 					element.cpf,
 					element.cargo
+				)
+			)
+		);
+	} else if (props.entity == "consultation") {
+		props.data.map((element) =>
+			rows.push(
+				createData(
+					element.id,
+					element.pet_id,
+					element.funcionario_id,
+					element.custo
 				)
 			)
 		);
