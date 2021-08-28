@@ -33,7 +33,7 @@ export const Box = (props) => {
 	const classes = useStyles();
 	const rows = [];
 
-	if (props.entity == "client") {
+	if (props.entity == "cliente") {
 		props.data.map((element) =>
 			rows.push(
 				createData(
@@ -55,18 +55,13 @@ export const Box = (props) => {
 				)
 			)
 		);
-	} else if (props.entity == "employee") {
+	} else if (props.entity == "funcionario") {
 		props.data.map((element) =>
 			rows.push(
-				createData(
-					element.id,
-					element.nome,
-					element.cpf,
-					element.cargo
-				)
+				createData(element.id, element.nome, element.cpf, element.cargo)
 			)
 		);
-	} else if (props.entity == "consultation") {
+	} else if (props.entity == "consulta") {
 		props.data.map((element) =>
 			rows.push(
 				createData(
@@ -78,7 +73,6 @@ export const Box = (props) => {
 			)
 		);
 	}
-
 
 	return (
 		<div className={classes.root}>
@@ -117,12 +111,18 @@ export const Box = (props) => {
 											t1={props.th1}
 											t2={props.th2}
 											t3={props.th3}
+											id={row.id}
+											entity={props.entity}
 										/>
 									</Button>
 								</TableCell>
 								<TableCell align="left">
 									<Button>
-										<ModalDeleteInfo name={row.name} />
+										<ModalDeleteInfo
+											name={row.name}
+											id={row.id}
+											entity={props.entity}
+										/>
 									</Button>
 								</TableCell>
 							</TableRow>

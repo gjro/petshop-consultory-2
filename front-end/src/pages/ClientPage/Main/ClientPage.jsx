@@ -14,6 +14,7 @@ export const ClientPage = () => {
 			.catch((err) => {
 				console.error("ops! ocorreu um erro" + err);
 			});
+		console.log(client);
 	}
 
 	React.useEffect(apiGet, []);
@@ -33,7 +34,7 @@ export const ClientPage = () => {
 						th3="Telefone"
 						new="novo-cliente"
 						data={client}
-						entity="client"
+						entity="cliente"
 					/>
 				</div>
 			</main>
